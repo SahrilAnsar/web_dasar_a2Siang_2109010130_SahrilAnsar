@@ -1,12 +1,14 @@
 <?php
 date_default_timezone_set("Asia/Jakarta");
-function koneksi(){
+
+function koneksi()
+{
     $ip = "localhost";
     $user = "root";
     $password = "";
-    $database = "2109010130_sahrilansar_webdasar_a2_siang";
-    $koneksi = mysqli_connect($ip,$user,$password,$database);
-    return $koneksi;   
+    $database = "web_dasar_a2";
+    $koneksi = mysqli_connect($ip, $user, $password, $database);
+    return $koneksi;
 }
 
 function q($nilai)
@@ -31,4 +33,17 @@ function prodi_satu($id, $isi_tabel)
 function prodi_satu_jumlah($id)
 {
     return mysqli_num_rows(q("SELECT * FROM prodi_umsu WHERE id = '$id'"));
+}
+
+function user_username_jumlah($username)
+{
+    return mysqli_num_rows(q("SELECT * FROM user WHERE username = '$username'"));
+}
+
+function user_satu($username, $isi_tabel)
+{
+    $x = mysqli_fetch_assoc(
+        q("SELECT * FROM user WHERE username = '$username'")
+    );
+    return $x[$isi_tabel];
 }

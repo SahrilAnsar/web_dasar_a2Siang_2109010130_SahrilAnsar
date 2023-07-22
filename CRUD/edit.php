@@ -9,6 +9,10 @@ if (prodi_satu_jumlah($id) < 1) {
   </script>
   ";
 }
+session_start();
+if (@$_SESSION["login"] == false and @$_SESSION["username"] == "") {
+  header("Location: login.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +59,7 @@ if (prodi_satu_jumlah($id) < 1) {
       if ($edit) {
         echo "<script>
         alert('Edit Berhasil!');
-        location='prodi_umsu.php';
+        location='prodi.php';
         </script>";
       } else {
         echo "<script>
